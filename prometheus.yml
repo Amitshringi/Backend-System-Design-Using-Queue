@@ -1,0 +1,9 @@
+# prometheus.yml
+
+global :
+  scrap_interval: 15s
+  
+scrape_config:
+  -job_name: 'app'
+   static_config:
+   -targets: ['app:3000']

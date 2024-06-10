@@ -1,0 +1,25 @@
+version: '3.4'
+
+services:
+  backendsystemdesign:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: development
+      MONGODB_URI: ${MONGODB_URI}
+      RABBITMQ_URL: ${RABBITMQ_URL}
+      SECRET_KEY: 'Backend_Developer-Amit'
+    ports:
+      - "3000:3000"
+      - "9229:9229"
+    command: ["node", "--inspect=0.0.0.0:9229", "server.js"]
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+  mongodb:
+    image: "mongo"
+    ports:
+      - "27017:27017"
